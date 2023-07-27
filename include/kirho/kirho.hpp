@@ -25,12 +25,12 @@ namespace kirho
     public:
         static auto success(T value) noexcept -> result<T, E>
         {
-            return result<T, E>{ true, { .value = value } };
+            return result<T, E>{ true, internal_union { .value = value } };
         }
 
         static auto error(E error) noexcept -> result<T, E>
         {
-            return result<T, E>{ false, { .value = error } };
+            return result<T, E>{ false, internal_union { .value = error } };
         }
 
         auto is_success(T& value) const noexcept -> bool
