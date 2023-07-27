@@ -15,6 +15,13 @@ namespace kirho
     template<typename T, typename E>
     class result
     {
+    private:
+        union internal_union
+        {
+            T value;
+            E error;
+        };
+
     public:
         static auto success(T value) noexcept -> result<T, E>
         {
@@ -81,13 +88,10 @@ namespace kirho
             return m_union.value;
         }
 
-    private:
-        union internal_union
-        {
-            T value;
-            E error;
-        };
+        result(const result&) = delete;
+        result& operator=(const result&) = delete;
 
+    private:
         result(bool p_success, internal_union p_union): m_success{p_success}, m_union{p_union} {}
 
     private:
