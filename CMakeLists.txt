@@ -35,4 +35,4 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 endif()
 
 # Export the library
-export(TARGETS kirho NAMESPACE kirho)
+export(TARGETS kirho NAMESPACE kirho FILE kirhoTargets.cmake)
