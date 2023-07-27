@@ -29,6 +29,8 @@ endif()
 add_library(kirho INTERFACE)
 target_include_directories(kirho INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
+message(STATUS "The include directory is located at: ${CMAKE_CURRENT_SOURCE_DIR}/include")
+
 # Add the tests, but only if we are not included in another project.
 if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     add_subdirectory(tests)
