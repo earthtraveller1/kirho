@@ -1,12 +1,6 @@
 # We need features from CMake 3.13 and below.
 cmake_minimum_required(VERSION 3.13)
 
-# Include the required CMake modules. We will be installing and exporting packages
-# in this case, so we will need the install directories and the package configuration
-# helpers
-include(GNUInstallDirs)
-include(CMakePackageConfigHelpers)
-
 # We only call project if we are not a subdirectory in another project.
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     project(kirho CXX)
