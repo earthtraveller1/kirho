@@ -30,6 +30,8 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT MSVC)
     add_link_options(-g3)
 endif()
 
-# Add the tests
-add_subdirectory(tests)
+# Add the tests, but only if we are not included in another project.
+if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    add_subdirectory(tests)
+endif()
 
