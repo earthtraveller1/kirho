@@ -1,4 +1,5 @@
-#include <iostream>
+#include <cassert>
+
 #include <kirho/kirho.hpp>
 
 using kirho::result;
@@ -17,8 +18,8 @@ auto get_number(int number) -> result<int, int>
 
 int main()
 {
-    int bogo;
-    std::cout << get_number(18).except("hello you suck bozo llll") << std::endl;
+    const auto result = get_number(69).except("hello you suck bozo llll");
+    assert(result == 420);
 
     return 0;
 }
