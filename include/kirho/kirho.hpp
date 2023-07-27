@@ -5,6 +5,8 @@
 
 namespace kirho
 {
+    struct empty{};
+
     template<typename T>
     concept printable = requires(T a)
     {
