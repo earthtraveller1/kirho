@@ -30,3 +30,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT MSVC)
     add_link_options(-g3)
 endif()
 
+# Add the tests
+add_subdirectory(tests)
+
