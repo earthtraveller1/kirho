@@ -5,6 +5,8 @@
 
 namespace kirho
 {
+    struct empty{};
+
     template<typename T>
     concept printable = requires(T a)
     {
@@ -36,7 +38,7 @@ namespace kirho
 
         static auto error(E error) noexcept -> result<T, E>
         {
-            return result<T, E>{ false, internal_union { .value = error } };
+            return result<T, E>{ false, internal_union { .error = error } };
         }
 
         auto is_success(T& value) const noexcept -> bool
