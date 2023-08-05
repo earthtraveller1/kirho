@@ -4,8 +4,6 @@
 #include <optional>
 #include <variant>
 
-#define defer(name, statement) const auto name##_defer = kirho::defer {[&]() noexcept { statement; }}; (void)name##_defer;
-
 namespace kirho
 {
     struct empty{};
@@ -112,3 +110,5 @@ namespace kirho
         std::variant<T, E> m_union;
     };
 }
+
+#define defer(name, statement) const auto name##_defer = kirho::defer {[&]() noexcept { statement; }}; (void)name##_defer;
