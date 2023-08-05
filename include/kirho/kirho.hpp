@@ -16,17 +16,17 @@ namespace kirho
 
     // A basic way to implement errors as values.
     template<typename T, typename E>
-    class result
+    class result_t
     {
     public:
-        static auto success(T value) noexcept -> result<T, E>
+        static auto success(T value) noexcept -> result_t<T, E>
         {
-            return result<T, E>{ true, std::variant<T, E> { std::move(value) } };
+            return result_t<T, E>{ true, std::variant<T, E> { std::move(value) } };
         }
 
-        static auto error(E error) noexcept -> result<T, E>
+        static auto error(E error) noexcept -> result_t<T, E>
         {
-            return result<T, E>{ false, std::variant<T, E> { std::move(error) } };
+            return result_t<T, E>{ false, std::variant<T, E> { std::move(error) } };
         }
 
         auto is_success(T& value) const noexcept -> bool
@@ -84,11 +84,11 @@ namespace kirho
             return std::get<T>(m_union);
         }
 
-        result(const result&) = delete;
-        result& operator=(const result&) = delete;
+        result_t(const result_t&) = delete;
+        result_t& operator=(const result_t&) = delete;
 
     private:
-        result(bool p_success, std::variant<T, E> p_union): m_success{p_success}, m_union{p_union} {}
+        result_t(bool p_success, std::variant<T, E> p_union): m_success{p_success}, m_union{p_union} {}
 
     private:
         bool m_success;
