@@ -28,6 +28,12 @@ namespace kirho
         F m_f;
     };
 
+    template<typename Fc, typename E>
+    concept error_handler = requires(Fc f, E e)
+    {
+        { f(e) };
+    };
+
     // A basic way to implement errors as values.
     template<typename T, typename E>
     class result_t
@@ -100,6 +106,18 @@ namespace kirho
 
         result_t(const result_t&) = delete;
         result_t& operator=(const result_t&) = delete;
+
+        template<error_handler<E> F>
+        auto handle_error(F handler) const -> void
+        {
+            if (!m_success)
+            {
+                handler(m_union.error);
+            }
+        }
+
+        result(const result&) = delete;
+        result& operator=(const result&) = delete;
 
     private:
         result_t(bool p_success, std::variant<T, E> p_union): m_success{p_success}, m_union{p_union} {}
