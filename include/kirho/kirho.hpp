@@ -97,7 +97,7 @@ namespace kirho
         {
             if (!m_success)
             {
-                std::cerr << "result::unwrap called on error value.\n";
+                std::cerr << "result_t::unwrap called on error value.\n";
                 std::terminate();
             }
 
@@ -115,9 +115,6 @@ namespace kirho
                 handler(m_union.error);
             }
         }
-
-        result(const result&) = delete;
-        result& operator=(const result&) = delete;
 
     private:
         result_t(bool p_success, std::variant<T, E> p_union): m_success{p_success}, m_union{p_union} {}
