@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <optional>
+#include <variant>
 
 namespace kirho
 {
@@ -17,29 +18,22 @@ namespace kirho
     template<typename T, typename E>
     class result
     {
-    private:
-        union internal_union
-        {
-            T value;
-            E error;
-        };
-
     public:
         static auto success(T value) noexcept -> result<T, E>
         {
-            return result<T, E>{ true, internal_union { .value = value } };
+            return result<T, E>{ true, std::variant<T, E> { std::move(value) } };
         }
 
         static auto error(E error) noexcept -> result<T, E>
         {
-            return result<T, E>{ false, internal_union { .error = error } };
+            return result<T, E>{ false, std::variant<T, E> { std::move(error) } };
         }
 
         auto is_success(T& value) const noexcept -> bool
         {
             if (m_success)
             {
-                value = m_union.value;
+                value = std::get<T>(m_union);
             }
 
             return m_success;
@@ -49,7 +43,7 @@ namespace kirho
         {
             if (!m_success)
             {
-                error = m_union.error;
+                error = std::get<E>(m_union);
             }
 
             return m_success;
@@ -59,7 +53,7 @@ namespace kirho
         {
             if (m_success)
             {
-                return std::optional<T>(m_union.value);
+                return std::optional<T>(std::get<T>(m_union));
             }
             else
             {
@@ -76,7 +70,7 @@ namespace kirho
                 std::terminate();
             }
 
-            return m_union.value;
+            return std::get<T>(m_union);
         }
 
         auto unwrap() const noexcept -> T
@@ -87,18 +81,18 @@ namespace kirho
                 std::terminate();
             }
 
-            return m_union.value;
+            return std::get<T>(m_union);
         }
 
         result(const result&) = delete;
         result& operator=(const result&) = delete;
 
     private:
-        result(bool p_success, internal_union p_union): m_success{p_success}, m_union{p_union} {}
+        result(bool p_success, std::variant<T, E> p_union): m_success{p_success}, m_union{p_union} {}
 
     private:
         bool m_success;
 
-        internal_union m_union;
+        std::variant<T, E> m_union;
     };
 }
