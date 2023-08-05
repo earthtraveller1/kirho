@@ -4,6 +4,8 @@
 #include <optional>
 #include <variant>
 
+#define defer(name, statement) const auto name##_defer = kirho::defer {[&]() noexcept { statement; }}; (void)name##_defer;
+
 namespace kirho
 {
     struct empty{};
@@ -12,6 +14,20 @@ namespace kirho
     concept printable = requires(T a)
     {
         { std::cout << a };
+    };
+
+    template<typename F>
+    concept deferable = requires(F a)
+    {
+        { a() };
+    };
+
+    template<deferable F>
+    struct defer
+    {
+        defer(F f) noexcept : m_f(f) {}
+        ~defer() noexcept { m_f(); }
+        F m_f;
     };
 
     // A basic way to implement errors as values.
