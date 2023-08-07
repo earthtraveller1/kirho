@@ -34,5 +34,71 @@ if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     add_subdirectory(tests)
 endif()
 
-# Export the library
-export(TARGETS kirho NAMESPACE kirho FILE kirhoTargets.cmake)
+# Now, we get to the fun part. We need to export the targets, but only if we are not 
+# not included in another subdirectory
+
+if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    # Install the library, I presume.
+    install(
+        TARGETS kirho EXPORT kirhoTargets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+        INCLUDES DESTINATION include
+    )
+
+    # Install the header file.
+    install(
+        FILES include/kirho/kirho.hpp
+        DESTINATION include/kirho
+        COMPONENT Devel
+    )
+
+    # Now, we need to write the version configuration file.
+    include(CMakePackageConfigHelpers)
+    write_basic_package_version_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/kirhoConfigVersion.cmake"
+        VERSION 0.1
+        COMPATIBILITY AnyNewerVersion
+    )
+
+    # Then, we need to export the kirho target
+    export(
+        EXPORT kirhoTargets
+        FILE "${CMAKE_CURRENT_BINARY_DIR}/kirhoTargets.cmake"
+        NAMESPACE kirho::
+    )
+
+    # Now, after we have exported the target, we need to configure it's 
+    # configuration file. Yeah, if you are wondering if I have any idea 
+    # what is going on, the truth is that I do not, I am just following
+    # CMake's guide on what I should do.
+    configure_file(
+        cmake/kirhoConfig.cmake
+        "${CMAKE_CURRENT_BINARY_DIR}/kirhoConfig.cmake"
+        COPYONLY
+    )
+    
+    # This is the location in which we will install all of the CMake package
+    # configuration files, relative to the install prefix.
+    set(KIRHO_CONFIG_PACKAGE_LOCATION share/cmake/kirho)
+
+    # Now, we need to install the targets file.
+    install(
+        EXPORT kirhoTargets
+        FILE kirhoTargets.cmake
+        NAMESPACE kirho::
+        DESTINATION ${KIRHO_CONFIG_PACKAGE_LOCATION}
+    )
+
+    # And finally, install the configuration and the version file.
+    install(
+        FILES 
+            cmake/kirhoConfig.cmake
+            "${CMAKE_CURRENT_BINARY_DIR}/kirhoConfigVersion.cmake"
+        DESTINATION
+            ${KIRHO_CONFIG_PACKAGE_LOCATION}
+        COMPONENT
+            Devel
+    )
+endif()
