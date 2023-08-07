@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <optional>
+#include <variant>
 
 namespace kirho
 {
@@ -13,6 +14,20 @@ namespace kirho
         { std::cout << a };
     };
 
+    template<typename F>
+    concept deferable = requires(F a)
+    {
+        { a() };
+    };
+
+    template<deferable F>
+    struct defer
+    {
+        defer(F f) noexcept : m_f(f) {}
+        ~defer() noexcept { m_f(); }
+        F m_f;
+    };
+
     template<typename Fc, typename E>
     concept error_handler = requires(Fc f, E e)
     {
@@ -21,31 +36,24 @@ namespace kirho
 
     // A basic way to implement errors as values.
     template<typename T, typename E>
-    class result
+    class result_t
     {
-    private:
-        union internal_union
-        {
-            T value;
-            E error;
-        };
-
     public:
-        static auto success(T value) noexcept -> result<T, E>
+        static auto success(T value) noexcept -> result_t<T, E>
         {
-            return result<T, E>{ true, internal_union { .value = value } };
+            return result_t<T, E>{ true, std::variant<T, E> { std::move(value) } };
         }
 
-        static auto error(E error) noexcept -> result<T, E>
+        static auto error(E error) noexcept -> result_t<T, E>
         {
-            return result<T, E>{ false, internal_union { .error = error } };
+            return result_t<T, E>{ false, std::variant<T, E> { std::move(error) } };
         }
 
         auto is_success(T& value) const noexcept -> bool
         {
             if (m_success)
             {
-                value = m_union.value;
+                value = std::get<T>(m_union);
             }
 
             return m_success;
@@ -55,7 +63,7 @@ namespace kirho
         {
             if (!m_success)
             {
-                error = m_union.error;
+                error = std::get<E>(m_union);
             }
 
             return m_success;
@@ -65,7 +73,7 @@ namespace kirho
         {
             if (m_success)
             {
-                return std::optional<T>(m_union.value);
+                return std::optional<T>(std::get<T>(m_union));
             }
             else
             {
@@ -82,19 +90,22 @@ namespace kirho
                 std::terminate();
             }
 
-            return m_union.value;
+            return std::get<T>(m_union);
         }
 
         auto unwrap() const noexcept -> T
         {
             if (!m_success)
             {
-                std::cerr << "result::unwrap called on error value.\n";
+                std::cerr << "result_t::unwrap called on error value.\n";
                 std::terminate();
             }
 
-            return m_union.value;
+            return std::get<T>(m_union);
         }
+
+        result_t(const result_t&) = delete;
+        result_t& operator=(const result_t&) = delete;
 
         template<error_handler<E> F>
         auto handle_error(F handler) const -> void
@@ -105,15 +116,14 @@ namespace kirho
             }
         }
 
-        result(const result&) = delete;
-        result& operator=(const result&) = delete;
-
     private:
-        result(bool p_success, internal_union p_union): m_success{p_success}, m_union{p_union} {}
+        result_t(bool p_success, std::variant<T, E> p_union): m_success{p_success}, m_union{p_union} {}
 
     private:
         bool m_success;
 
-        internal_union m_union;
+        std::variant<T, E> m_union;
     };
 }
+
+#define defer(name, statement) const auto name##_defer = kirho::defer {[&]() noexcept { statement; }}; (void)name##_defer;
