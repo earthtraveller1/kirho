@@ -1,1 +1,0 @@
-static auto dummy() -> void {}
