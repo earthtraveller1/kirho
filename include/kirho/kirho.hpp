@@ -122,7 +122,7 @@ class result_t
     {
         if (!m_success)
         {
-            handler(m_union.error);
+            handler(std::get<E>(m_union));
         }
     }
 
