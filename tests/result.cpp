@@ -2,17 +2,17 @@
 
 #include <kirho/kirho.hpp>
 
-using kirho::result;
+using kirho::result_t;
 
-auto get_number(int number) -> result<int, int>
+auto get_number(int number) -> result_t<int, int>
 {
     if (number == 69)
     {
-        return result<int, int>::success(420);
+        return result_t<int, int>::success(420);
     }
     else
     {
-        return result<int, int>::error(666);
+        return result_t<int, int>::error(666);
     }
 }
 
