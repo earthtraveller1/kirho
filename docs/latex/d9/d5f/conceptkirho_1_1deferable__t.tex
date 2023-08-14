@@ -1,0 +1,28 @@
+\doxysection{kirho\+::deferable\+\_\+t Concept Reference}
+\hypertarget{conceptkirho_1_1deferable__t}{}\label{conceptkirho_1_1deferable__t}\index{kirho::deferable\_t@{kirho::deferable\_t}}
+
+
+Anything that can be deferred.  
+
+
+
+
+{\ttfamily \#include $<$kirho.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1deferable__t}{kirho::deferable\_t}}\ =\ \ \textcolor{keyword}{requires}(F\ a)\ \{}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ a()}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Anything that can be deferred. 
+
+Basically, anything that can be called as if it\textquotesingle{}s a function that takes in no arguments. 

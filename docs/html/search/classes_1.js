@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['empty_0',['empty',['../dc/d50/structkirho_1_1empty.html',1,'kirho']]]
+  ['empty_5ft_0',['empty_t',['../d6/d71/structkirho_1_1empty__t.html',1,'kirho']]]
 ];

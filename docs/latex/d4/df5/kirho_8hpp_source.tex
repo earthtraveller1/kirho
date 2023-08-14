@@ -1,149 +1,153 @@
 \doxysection{kirho.\+hpp}
 \hypertarget{kirho_8hpp_source}{}\label{kirho_8hpp_source}\index{include/kirho/kirho.hpp@{include/kirho/kirho.hpp}}
-
+\mbox{\hyperlink{kirho_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <optional>}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <variant>}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }kirho}
-\DoxyCodeLine{00008\ \{}
-\DoxyCodeLine{00009\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structkirho_1_1empty}{empty}}}
-\DoxyCodeLine{00010\ \{}
-\DoxyCodeLine{00011\ \};}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00014\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1printable}{printable}}\ =\ \textcolor{keyword}{requires}(T\ a)\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \{}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ std::cout\ <<\ a}
-\DoxyCodeLine{00017\ \ \ \ \ \};}
-\DoxyCodeLine{00018\ \};}
-\DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ F>}
-\DoxyCodeLine{00021\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1deferable}{deferable}}\ =\ \textcolor{keyword}{requires}(F\ a)\ \{}
-\DoxyCodeLine{00022\ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ a()}
-\DoxyCodeLine{00024\ \ \ \ \ \};}
-\DoxyCodeLine{00025\ \};}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{keyword}{template}\ <deferable\ F>}
-\DoxyCodeLine{00028\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structkirho_1_1defer}{defer}}}
-\DoxyCodeLine{00029\ \{}
-\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{structkirho_1_1defer}{defer}}(F\ f)\ noexcept\ :\ m\_f(f)}
-\DoxyCodeLine{00031\ \ \ \ \ \{}
-\DoxyCodeLine{00032\ \ \ \ \ \}}
-\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{structkirho_1_1defer}{\string~defer}}()\ \textcolor{keyword}{noexcept}}
-\DoxyCodeLine{00034\ \ \ \ \ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ m\_f();}
-\DoxyCodeLine{00036\ \ \ \ \ \}}
-\DoxyCodeLine{00037\ \ \ \ \ F\ m\_f;}
-\DoxyCodeLine{00038\ \};}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Fc,\ \textcolor{keyword}{typename}\ E>}
-\DoxyCodeLine{00041\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1error__handler}{error\_handler}}\ =\ \textcolor{keyword}{requires}(Fc\ f,\ E\ e)\ \{}
-\DoxyCodeLine{00042\ \ \ \ \ \{}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ f(e)}
-\DoxyCodeLine{00044\ \ \ \ \ \};}
-\DoxyCodeLine{00045\ \};}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00056\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ E>}
-\DoxyCodeLine{00057\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}}
-\DoxyCodeLine{00058\ \{}
-\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a6c9d62d1c156031eb0e0ce3037e9caeb}{success}}(T\ value)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t<T,\ E>}}}
-\DoxyCodeLine{00068\ \ \ \ \ \{}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t<T,\ E>}}\{\textcolor{keyword}{true},\ std::variant<T,\ E>\{std::move(value)\}\};}
-\DoxyCodeLine{00070\ \ \ \ \ \}}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}}(E\ \mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}})\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t<T,\ E>}}}
-\DoxyCodeLine{00080\ \ \ \ \ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t<T,\ E>}}\{\textcolor{keyword}{false},\ std::variant<T,\ E>\{std::move(\mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}})\}\};}
-\DoxyCodeLine{00082\ \ \ \ \ \}}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_aacafd9a9752bcb21f97a3906105bbacb}{is\_success}}(T\&\ value)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
-\DoxyCodeLine{00095\ \ \ \ \ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_success)}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ std::get<T>(m\_union);}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <variant>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }kirho}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structkirho_1_1empty__t}{empty\_t}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1printable__t}{printable\_t}}\ =\ \textcolor{keyword}{requires}(T\ a)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::cout\ <<\ a}
+\DoxyCodeLine{00042\ \ \ \ \ \};}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1deferable__t}{deferable\_t}}\ =\ \textcolor{keyword}{requires}(F\ a)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ a()}
+\DoxyCodeLine{00055\ \ \ \ \ \};}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}\ <deferable\_t\ F>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structkirho_1_1defer__t}{defer\_t}}}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{structkirho_1_1defer__t_aeea68bd7164452467ae1fb023fcc4724}{defer\_t}}(F\ f)\ noexcept\ :\ m\_f(f)}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{structkirho_1_1defer__t_a5cbbd02daaa4e3a8d76201a1b1a4f09d}{\string~defer\_t}}()\ noexcept}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ m\_f();}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
 \DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_success;}
-\DoxyCodeLine{00102\ \ \ \ \ \}}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a3b12fc0472d74595d1f5ec3a2e6a6cea}{is\_error}}(E\&\ \mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
-\DoxyCodeLine{00115\ \ \ \ \ \{}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_success)}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}}\ =\ std::get<E>(m\_union);}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00102\ \ \ \ \ F\ m\_f;}
+\DoxyCodeLine{00103\ \};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Fc,\ \textcolor{keyword}{typename}\ E>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1error__handler__t}{error\_handler\_t}}\ =\ \textcolor{keyword}{requires}(Fc\ f,\ E\ e)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ f(e)}
+\DoxyCodeLine{00118\ \ \ \ \ \};}
+\DoxyCodeLine{00119\ \};}
 \DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_success;}
-\DoxyCodeLine{00122\ \ \ \ \ \}}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_adfca00fcb7d5bd1093507ccd57e25d7f}{to\_optional}}()\ const\ noexcept\ -\/>\ std::optional<T>}
-\DoxyCodeLine{00133\ \ \ \ \ \{}
-\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_success)}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::optional<T>(std::get<T>(m\_union));}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::optional<T>();}
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00142\ \ \ \ \ \}}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{template}\ <\mbox{\hyperlink{conceptkirho_1_1printable}{printable}}...\ S>}
-\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a2a3363a8dfbe1a249cf7f36d403bd8a9}{except}}(S...\ values)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ T}
-\DoxyCodeLine{00155\ \ \ \ \ \{}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_success)}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ (std::cerr\ <<\ ...\ <<\ values)\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ std::terminate();}
-\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_union);}
-\DoxyCodeLine{00163\ \ \ \ \ \}}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a49b38ab3bacf6e39fb226c44513bb7ad}{unwrap}}()\ const\ noexcept\ -\/>\ T}
-\DoxyCodeLine{00176\ \ \ \ \ \{}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_success)}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}result\_t::unwrap\ called\ on\ error\ value.\(\backslash\)n"{}};}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ std::terminate();}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_union);}
-\DoxyCodeLine{00184\ \ \ \ \ \}}
-\DoxyCodeLine{00185\ }
-\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{template}\ <error\_handler<E>\ F>}
-\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_abb91ec29624630e8cd35f148f1c30866}{handle\_error}}(F\ handler)\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keywordtype}{void}}
-\DoxyCodeLine{00203\ \ \ \ \ \{}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_success)}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ handler(std::get<E>(m\_union));}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00208\ \ \ \ \ \}}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00211\ \ \ \ \ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}(\textcolor{keywordtype}{bool}\ p\_success,\ std::variant<T,\ E>\ p\_union)}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ :\ m\_success\{p\_success\},\ m\_union\{p\_union\}}
-\DoxyCodeLine{00213\ \ \ \ \ \{}
-\DoxyCodeLine{00214\ \ \ \ \ \}}
-\DoxyCodeLine{00215\ }
-\DoxyCodeLine{00216\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_success;}
-\DoxyCodeLine{00218\ }
-\DoxyCodeLine{00219\ \ \ \ \ std::variant<T,\ E>\ m\_union;}
-\DoxyCodeLine{00220\ \};}
-\DoxyCodeLine{00221\ \}\ \textcolor{comment}{//\ namespace\ kirho}}
-\DoxyCodeLine{00222\ }
-\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#define\ defer(name,\ statement)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00224\ \textcolor{preprocessor}{\ \ \ \ const\ auto\ name\#\#\_defer\ =\ kirho::defer\{[\&]()\ noexcept\ \{\ statement;\ \}\};\ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00225\ \textcolor{preprocessor}{\ \ \ \ (void)name\#\#\_defer;}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ E>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a6c9d62d1c156031eb0e0ce3037e9caeb}{success}}(T\ value)\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t<T,\ E>}}}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t<T,\ E>}}\{\textcolor{keyword}{true},\ std::variant<T,\ E>\{std::move(value)\}\};}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}}(E\ \mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}})\ \textcolor{keyword}{noexcept}\ -\/>\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t<T,\ E>}}}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t<T,\ E>}}\{\textcolor{keyword}{false},\ std::variant<T,\ E>\{std::move(\mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}})\}\};}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_aacafd9a9752bcb21f97a3906105bbacb}{is\_success}}(T\&\ value)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_success)}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ std::get<T>(m\_union);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_success;}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a3b12fc0472d74595d1f5ec3a2e6a6cea}{is\_error}}(E\&\ \mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_success)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classkirho_1_1result__t_a58adbb1165babae1ea0f2ab89cbfa3af}{error}}\ =\ std::get<E>(m\_union);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !m\_success;}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_adfca00fcb7d5bd1093507ccd57e25d7f}{to\_optional}}()\ const\ noexcept\ -\/>\ std::optional<T>}
+\DoxyCodeLine{00207\ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_success)}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::optional<T>(std::get<T>(m\_union));}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::optional<T>();}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{template}\ <\mbox{\hyperlink{conceptkirho_1_1printable__t}{printable\_t}}...\ S>}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a2a3363a8dfbe1a249cf7f36d403bd8a9}{except}}(S...\ values)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ -\/>\ T}
+\DoxyCodeLine{00229\ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_success)}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ (std::cerr\ <<\ ...\ <<\ values)\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ std::terminate();}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_union);}
+\DoxyCodeLine{00237\ \ \ \ \ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_a49b38ab3bacf6e39fb226c44513bb7ad}{unwrap}}()\ const\ noexcept\ -\/>\ T}
+\DoxyCodeLine{00250\ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_success)}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}result\_t::unwrap\ called\ on\ error\ value.\(\backslash\)n"{}};}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ std::terminate();}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::get<T>(m\_union);}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{template}\ <error\_handler\_t<E>\ F>}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classkirho_1_1result__t_abb91ec29624630e8cd35f148f1c30866}{handle\_error}}(F\ handler)\ \textcolor{keyword}{const}\ -\/>\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00277\ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_success)}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ handler(std::get<E>(m\_union));}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00285\ \ \ \ \ \mbox{\hyperlink{classkirho_1_1result__t}{result\_t}}(\textcolor{keywordtype}{bool}\ p\_success,\ std::variant<T,\ E>\ p\_union)}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ :\ m\_success\{p\_success\},\ m\_union\{p\_union\}}
+\DoxyCodeLine{00287\ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_success;}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ std::variant<T,\ E>\ m\_union;}
+\DoxyCodeLine{00294\ \};}
+\DoxyCodeLine{00295\ \}\ \textcolor{comment}{//\ namespace\ kirho}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ defer(name,\ statement)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\ \ \ \ const\ auto\ name\#\#\_defer\ =\ kirho::defer\{[\&]()\ noexcept\ \{\ statement;\ \}\};\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \ \ \ (void)name\#\#\_defer;}}
 
 \end{DoxyCode}

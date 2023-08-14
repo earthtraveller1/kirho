@@ -1,0 +1,28 @@
+\doxysection{kirho\+::error\+\_\+handler\+\_\+t Concept Reference}
+\hypertarget{conceptkirho_1_1error__handler__t}{}\label{conceptkirho_1_1error__handler__t}\index{kirho::error\_handler\_t@{kirho::error\_handler\_t}}
+
+
+A concept covers anything that can take in one argument of the specified type.  
+
+
+
+
+{\ttfamily \#include $<$kirho.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Fc,\ \textcolor{keyword}{typename}\ E>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1error__handler__t}{kirho::error\_handler\_t}}\ =\ \ \textcolor{keyword}{requires}(Fc\ f,\ E\ e)\ \{}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ f(e)}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept covers anything that can take in one argument of the specified type. 
+
+There really isn\textquotesingle{}t much to say, except that now that I think about it, this concept can be generalized into something more than just an error handler. But, it\textquotesingle{}s fine, don\textquotesingle{}t worry about it. After all, I\textquotesingle{}m the library author, right? 

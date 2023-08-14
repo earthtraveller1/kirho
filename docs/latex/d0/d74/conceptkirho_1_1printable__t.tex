@@ -1,0 +1,28 @@
+\doxysection{kirho\+::printable\+\_\+t Concept Reference}
+\hypertarget{conceptkirho_1_1printable__t}{}\label{conceptkirho_1_1printable__t}\index{kirho::printable\_t@{kirho::printable\_t}}
+
+
+Anything that can be printed with standard output.  
+
+
+
+
+{\ttfamily \#include $<$kirho.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkirho_1_1printable__t}{kirho::printable\_t}}\ =\ \ \textcolor{keyword}{requires}(T\ a)\ \{}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ a}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Anything that can be printed with standard output. 
+
+A concept that captures everything that can be printed using the standard output objects, such as {\ttfamily std\+::cout}, {\ttfamily std\+::cin}, or {\ttfamily std\+::clog}. This includes objects who have overrode the {\ttfamily \texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} operator for standard ostream. 

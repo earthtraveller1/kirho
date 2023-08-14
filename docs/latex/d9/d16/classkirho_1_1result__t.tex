@@ -18,7 +18,7 @@ auto \mbox{\hyperlink{classkirho_1_1result__t_a3b12fc0472d74595d1f5ec3a2e6a6cea}
 \begin{DoxyCompactList}\small\item\em Checks if the value is an error value. \end{DoxyCompactList}\item 
 auto \mbox{\hyperlink{classkirho_1_1result__t_adfca00fcb7d5bd1093507ccd57e25d7f}{to\+\_\+optional}} () const noexcept -\/$>$ std\+::optional$<$ T $>$
 \begin{DoxyCompactList}\small\item\em Converts this result to a std\+::optional. \end{DoxyCompactList}\item 
-{\footnotesize template$<$printable... S$>$ }\\auto \mbox{\hyperlink{classkirho_1_1result__t_a2a3363a8dfbe1a249cf7f36d403bd8a9}{except}} (S... values) const noexcept -\/$>$ T
+{\footnotesize template$<$printable\+\_\+t... S$>$ }\\auto \mbox{\hyperlink{classkirho_1_1result__t_a2a3363a8dfbe1a249cf7f36d403bd8a9}{except}} (S... values) const noexcept -\/$>$ T
 \begin{DoxyCompactList}\small\item\em Panic and prints the passed values if it is an error value. \end{DoxyCompactList}\item 
 auto \mbox{\hyperlink{classkirho_1_1result__t_a49b38ab3bacf6e39fb226c44513bb7ad}{unwrap}} () const noexcept -\/$>$ T
 \item 
@@ -28,7 +28,7 @@ auto \mbox{\hyperlink{classkirho_1_1result__t_a49b38ab3bacf6e39fb226c44513bb7ad}
 \Hypertarget{classkirho_1_1result__t_a379102b37bcdb3d80fb8b336265499f3}\label{classkirho_1_1result__t_a379102b37bcdb3d80fb8b336265499f3} 
 \mbox{\hyperlink{classkirho_1_1result__t}{result\+\_\+t}} \& {\bfseries operator=} (const \mbox{\hyperlink{classkirho_1_1result__t}{result\+\_\+t}} \&)=delete
 \item 
-{\footnotesize template$<$error\+\_\+handler$<$ E $>$ F$>$ }\\auto \mbox{\hyperlink{classkirho_1_1result__t_abb91ec29624630e8cd35f148f1c30866}{handle\+\_\+error}} (F handler) const -\/$>$ void
+{\footnotesize template$<$error\+\_\+handler\+\_\+t$<$ E $>$ F$>$ }\\auto \mbox{\hyperlink{classkirho_1_1result__t_abb91ec29624630e8cd35f148f1c30866}{handle\+\_\+error}} (F handler) const -\/$>$ void
 \begin{DoxyCompactList}\small\item\em Calls the passed lambda with the error value if this is indeed an error type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -70,7 +70,7 @@ Creates an error value out of the value that you pass into it.
 \index{except@{except}!kirho::result\_t$<$ T, E $>$@{kirho::result\_t$<$ T, E $>$}}
 \doxysubsubsection{\texorpdfstring{except()}{except()}}
 {\footnotesize\ttfamily template$<$typename T , typename E $>$ \\
-template$<$printable... S$>$ \\
+template$<$printable\+\_\+t... S$>$ \\
 auto \mbox{\hyperlink{classkirho_1_1result__t}{kirho\+::result\+\_\+t}}$<$ T, E $>$\+::except (\begin{DoxyParamCaption}\item[{S...}]{values }\end{DoxyParamCaption}) const -\/$>$ T     \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 
@@ -87,7 +87,7 @@ The success value if this result is not an error value.
 \index{handle\_error@{handle\_error}!kirho::result\_t$<$ T, E $>$@{kirho::result\_t$<$ T, E $>$}}
 \doxysubsubsection{\texorpdfstring{handle\_error()}{handle\_error()}}
 {\footnotesize\ttfamily template$<$typename T , typename E $>$ \\
-template$<$error\+\_\+handler$<$ E $>$ F$>$ \\
+template$<$error\+\_\+handler\+\_\+t$<$ E $>$ F$>$ \\
 auto \mbox{\hyperlink{classkirho_1_1result__t}{kirho\+::result\+\_\+t}}$<$ T, E $>$\+::handle\+\_\+error (\begin{DoxyParamCaption}\item[{F}]{handler }\end{DoxyParamCaption}) const -\/$>$ void     \hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -195,4 +195,4 @@ The success value if this result is not an error value.
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/kirho/kirho.\+hpp\end{DoxyCompactItemize}
+include/kirho/\mbox{\hyperlink{kirho_8hpp}{kirho.\+hpp}}\end{DoxyCompactItemize}

@@ -97,7 +97,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adfca00fcb7d5bd1093507ccd57e25d7f"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d16/classkirho_1_1result__t.html#adfca00fcb7d5bd1093507ccd57e25d7f">to_optional</a> () const noexcept -&gt; std::optional&lt; T &gt;</td></tr>
 <tr class="memdesc:adfca00fcb7d5bd1093507ccd57e25d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this result to a std::optional.  <br /></td></tr>
 <tr class="separator:adfca00fcb7d5bd1093507ccd57e25d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a3363a8dfbe1a249cf7f36d403bd8a9"><td class="memTemplParams" colspan="2">template&lt;printable... S&gt; </td></tr>
+<tr class="memitem:a2a3363a8dfbe1a249cf7f36d403bd8a9"><td class="memTemplParams" colspan="2">template&lt;printable_t... S&gt; </td></tr>
 <tr class="memitem:a2a3363a8dfbe1a249cf7f36d403bd8a9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d9/d16/classkirho_1_1result__t.html#a2a3363a8dfbe1a249cf7f36d403bd8a9">except</a> (S... values) const noexcept -&gt; T</td></tr>
 <tr class="memdesc:a2a3363a8dfbe1a249cf7f36d403bd8a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Panic and prints the passed values if it is an error value.  <br /></td></tr>
 <tr class="separator:a2a3363a8dfbe1a249cf7f36d403bd8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,7 +109,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a379102b37bcdb3d80fb8b336265499f3"><td class="memItemLeft" align="right" valign="top"><a id="a379102b37bcdb3d80fb8b336265499f3" name="a379102b37bcdb3d80fb8b336265499f3"></a>
 <a class="el" href="../../d9/d16/classkirho_1_1result__t.html">result_t</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../d9/d16/classkirho_1_1result__t.html">result_t</a> &amp;)=delete</td></tr>
 <tr class="separator:a379102b37bcdb3d80fb8b336265499f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb91ec29624630e8cd35f148f1c30866"><td class="memTemplParams" colspan="2">template&lt;error_handler&lt; E &gt; F&gt; </td></tr>
+<tr class="memitem:abb91ec29624630e8cd35f148f1c30866"><td class="memTemplParams" colspan="2">template&lt;error_handler_t&lt; E &gt; F&gt; </td></tr>
 <tr class="memitem:abb91ec29624630e8cd35f148f1c30866"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d9/d16/classkirho_1_1result__t.html#abb91ec29624630e8cd35f148f1c30866">handle_error</a> (F handler) const -&gt; void</td></tr>
 <tr class="memdesc:abb91ec29624630e8cd35f148f1c30866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the passed lambda with the error value if this is indeed an error type.  <br /></td></tr>
 <tr class="separator:abb91ec29624630e8cd35f148f1c30866"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -174,7 +174,7 @@ template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
 template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
-template&lt;printable... S&gt; </div>
+template&lt;printable_t... S&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -209,7 +209,7 @@ template&lt;printable... S&gt; </div>
 <div class="memtemplate">
 template&lt;typename T , typename E &gt; </div>
 <div class="memtemplate">
-template&lt;error_handler&lt; E &gt; F&gt; </div>
+template&lt;error_handler_t&lt; E &gt; F&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

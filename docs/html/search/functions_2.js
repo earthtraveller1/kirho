@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['is_5ferror_0',['is_error',['../d9/d16/classkirho_1_1result__t.html#a3b12fc0472d74595d1f5ec3a2e6a6cea',1,'kirho::result_t']]],
-  ['is_5fsuccess_1',['is_success',['../d9/d16/classkirho_1_1result__t.html#aacafd9a9752bcb21f97a3906105bbacb',1,'kirho::result_t']]]
+  ['handle_5ferror_0',['handle_error',['../d9/d16/classkirho_1_1result__t.html#abb91ec29624630e8cd35f148f1c30866',1,'kirho::result_t']]]
 ];
