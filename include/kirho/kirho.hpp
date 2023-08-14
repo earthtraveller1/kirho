@@ -65,20 +65,39 @@ concept deferable_t = requires(F a) {
  * that you would like to defer the execution of. Then, the destructor will
  * automatically call the function at the end of the current scope. This process
  * may sound tedious, but there is a macro provided that can a lot of this for
- * you. By the way, @ref defer
+ * you.
  *
- * @sa #defer(name, statement)
+ * @sa #defer
  */
 template <deferable_t F>
 struct defer_t
 {
+    /**
+     * @brief Creates a defer object with the specified function.
+     *
+     * The specified function will be called in the object's destructor. It has
+     * to take in no arguments (as stated in the concept) in order to work. You
+     * probably will not be using this constructor directly, but rather via the
+     * @ref #defer macro.
+     *
+     * @sa kirho::deferable_t<F>
+     * @sa #defer
+     */
     defer_t(F f) noexcept : m_f(f)
     {
     }
+
+    /**
+     * @brief Calls the deferred function
+     *
+     * The deferred function needs to take in no arguments, or else this will
+     * not work.
+     */
     ~defer_t() noexcept
     {
         m_f();
     }
+
     F m_f;
 };
 
