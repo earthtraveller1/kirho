@@ -118,7 +118,7 @@ class result_t
             error = std::get<E>(m_union);
         }
 
-        return m_success;
+        return !m_success;
     }
 
     /**
