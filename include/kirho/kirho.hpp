@@ -6,31 +6,31 @@
 
 namespace kirho
 {
-struct empty
+struct empty_t
 {
 };
 
 template <typename T>
-concept printable = requires(T a) {
+concept printable_t = requires(T a) {
     {
         std::cout << a
     };
 };
 
 template <typename F>
-concept deferable = requires(F a) {
+concept deferable_t = requires(F a) {
     {
         a()
     };
 };
 
-template <deferable F>
-struct defer
+template <deferable_t F>
+struct defer_t
 {
-    defer(F f) noexcept : m_f(f)
+    defer_t(F f) noexcept : m_f(f)
     {
     }
-    ~defer() noexcept
+    ~defer_t() noexcept
     {
         m_f();
     }
@@ -38,7 +38,7 @@ struct defer
 };
 
 template <typename Fc, typename E>
-concept error_handler = requires(Fc f, E e) {
+concept error_handler_t = requires(Fc f, E e) {
     {
         f(e)
     };
@@ -150,7 +150,7 @@ class result_t
      *
      * @return The success value if this result is not an error value.
      */
-    template <printable... S>
+    template <printable_t... S>
     auto except(S... values) const noexcept -> T
     {
         if (!m_success)
@@ -198,7 +198,7 @@ class result_t
      * @param handler the closure or function that will be called with the
      * error.
      */
-    template <error_handler<E> F>
+    template <error_handler_t<E> F>
     auto handle_error(F handler) const -> void
     {
         if (!m_success)
