@@ -21,7 +21,7 @@ struct empty_t
  * @brief Anything that can be printed with standard output.
  *
  * A concept that captures everything that can be printed using the standard
- * output objects, such as @ref std::cout , @ref std::cin , or @ref std::clog .
+ * output objects, such as `std::cout`, `std::cin`, or `std::clog`.
  * This includes objects who have overrode the `>>` operator for standard
  * ostream.
  */
@@ -55,7 +55,9 @@ concept deferable_t = requires(F a) {
  * that you would like to defer the execution of. Then, the destructor will
  * automatically call the function at the end of the current scope. This process
  * may sound tedious, but there is a macro provided that can a lot of this for
- * you.
+ * you. By the way, @ref defer
+ *
+ * @sa #defer(name, statement)
  */
 template <deferable_t F>
 struct defer_t
@@ -262,6 +264,22 @@ class result_t
 };
 } // namespace kirho
 
+/**
+ * \def defer(name, statement)
+ *
+ * A helper macro that allows you to defer a statement.
+ */
+
+/**
+ * @brief A helper macro that allows you to defer a statement.
+ *
+ * It will create an object named whatever the `name` is, with the term `_defer`
+ * appended to the end of it. It should explain why you get errors when you try
+ * to create objects of such names.
+ *
+ * @param name The name for the defer object.
+ * @param statement The statement that you want to defer.
+ */
 #define defer(name, statement)                                                 \
     const auto name##_defer = kirho::defer{[&]() noexcept { statement; }};     \
     (void)name##_defer;
