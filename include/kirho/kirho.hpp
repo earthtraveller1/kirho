@@ -6,10 +6,25 @@
 
 namespace kirho
 {
+/**
+ * @brief An empty type.
+ *
+ * A struct that contains absolutely nothing, and is therefore an empty type. It
+ * can be useful when used with the @ref result_t type, such as , for example,
+ * to indicate that a function returns nothing but still might fail.
+ */
 struct empty_t
 {
 };
 
+/**
+ * @brief Anything that can be printed with standard output.
+ *
+ * A concept that captures everything that can be printed using the standard
+ * output objects, such as @ref std::cout , @ref std::cin , or @ref std::clog .
+ * This includes objects who have overrode the `>>` operator for standard
+ * ostream.
+ */
 template <typename T>
 concept printable_t = requires(T a) {
     {
@@ -17,6 +32,12 @@ concept printable_t = requires(T a) {
     };
 };
 
+/**
+ * @brief Anything that can be deferred.
+ *
+ * Basically, anything that can be called as if it's a function that takes in no
+ * arguments.
+ */
 template <typename F>
 concept deferable_t = requires(F a) {
     {
@@ -24,6 +45,18 @@ concept deferable_t = requires(F a) {
     };
 };
 
+/**
+ * @brief A way to defer execution of something until the end of the current
+ * scope.
+ *
+ * This is essentially a class that provides a way for you to defer execution of
+ * something until the end of the current scope. How it works is that you create
+ * an object of this type and pass into it's constructor the function or closure
+ * that you would like to defer the execution of. Then, the destructor will
+ * automatically call the function at the end of the current scope. This process
+ * may sound tedious, but there is a macro provided that can a lot of this for
+ * you.
+ */
 template <deferable_t F>
 struct defer_t
 {
@@ -37,6 +70,15 @@ struct defer_t
     F m_f;
 };
 
+/**
+ * @brief A concept covers anything that can take in one argument of the
+ * specified type.
+ *
+ * There really isn't much to say, except that now that I think about it, this
+ * concept can be generalized into something more than just an error handler.
+ * But, it's fine, don't worry about it. After all, I'm the library author,
+ * right?
+ */
 template <typename Fc, typename E>
 concept error_handler_t = requires(Fc f, E e) {
     {
