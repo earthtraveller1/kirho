@@ -45,7 +45,7 @@ concept error_handler = requires(Fc f, E e) {
 };
 
 /**
- * A basic implementation of error as values, inspired by the Rust
+ * @brief A basic implementation of error as values, inspired by the Rust
  * Result type.
  *
  * This is a fairly basic implementation of an error as value type, and was
@@ -58,7 +58,7 @@ class result_t
 {
   public:
     /**
-     * Creates a success value.
+     * @brief Creates a success value.
      *
      * Creates a success value out of the value that you pass into it.
      *
@@ -70,7 +70,7 @@ class result_t
     }
 
     /**
-     * Creates an error value.
+     * @brief Creates an error value.
      *
      * Creates an error value out of the value that you pass into it.
      *
@@ -82,7 +82,7 @@ class result_t
     }
 
     /**
-     * Checks if the value is successful.
+     * @brief Checks if the value is successful.
      *
      * Checks if the value is a success value, and returns it through the
      * reference if it is.
@@ -102,7 +102,7 @@ class result_t
     }
 
     /**
-     * Checks if the value is an error value.
+     * @brief Checks if the value is an error value.
      *
      * Checks if the value is an error value, and returns it rhough the
      * reference if it is.
@@ -122,7 +122,7 @@ class result_t
     }
 
     /**
-     * Converts this result to a std::optional.
+     * @brief Converts this result to a std::optional.
      *
      * Converts this result into a std::optional. When converted, the optional
      * type will not contain any information regarding the error.
@@ -142,7 +142,7 @@ class result_t
     }
 
     /**
-     * Panic and prints the passed values if it is an error value.
+     * @brief Panic and prints the passed values if it is an error value.
      *
      * Panics and prints the values that are passed (not separated by spaces,
      * unlike the typical convention) if the result_t is an error value.
@@ -187,8 +187,8 @@ class result_t
     result_t& operator=(const result_t&) = delete;
 
     /**
-     * Calls the passed lambda with the error value if this is indeed an error
-     * type.
+     * @brief Calls the passed lambda with the error value if this is indeed an
+     * error type.
      *
      * Checks if we are an error type. If we are, then we simply call the
      * closure that was passed with the error value. This is a way for you to
