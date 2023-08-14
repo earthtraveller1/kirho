@@ -4,15 +4,15 @@
 
 using kirho::result_t;
 
-auto get_number(int number) -> result_t<int, int>
+auto get_number(int number) -> result_t<int, float>
 {
     if (number == 69)
     {
-        return result_t<int, int>::success(420);
+        return result_t<int, float>::success(420);
     }
     else
     {
-        return result_t<int, int>::error(666);
+        return result_t<int, float>::error(666);
     }
 }
 
