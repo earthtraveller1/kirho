@@ -98,6 +98,7 @@ struct defer_t
         m_f();
     }
 
+  private:
     F m_f;
 };
 
