@@ -1,3 +1,13 @@
+/**
+ * @file kirho.hpp
+ * @brief Core Kirho library features.
+ *
+ * In other words, this file contains all of the features that are part of the
+ * kirho library. There are, unfortunately, no more files in this library. I
+ * suppose that you can say that this is not only a header only library, but
+ * also a single-header library. Unsure of how long this is going to last,
+ * however, as the library could become multifile in the future.
+ */
 #pragma once
 
 #include <iostream>
@@ -266,8 +276,6 @@ class result_t
 
 /**
  * \def defer(name, statement)
- *
- * A helper macro that allows you to defer a statement.
  */
 
 /**
