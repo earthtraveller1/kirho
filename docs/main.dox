@@ -1,0 +1,7 @@
+/*!
+
+@mainpage notitle
+
+Kirho is a almost completely useless library created by me for the purpose of
+making C++ resemble languages that are not C++. It is not guaranteed to be 
+correct and, as a result, you should probably not use this in production.
