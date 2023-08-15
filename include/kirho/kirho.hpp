@@ -309,5 +309,5 @@ class result_t
  * @param statement The statement that you want to defer.
  */
 #define defer(name, statement)                                                 \
-    const auto name##_defer = kirho::defer{[&]() noexcept { statement; }};     \
+    const auto name##_defer = kirho::defer_t{[&]() noexcept { statement; }};   \
     (void)name##_defer;
