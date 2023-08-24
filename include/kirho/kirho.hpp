@@ -138,7 +138,7 @@ class result_t
      *
      * @param value The value to wrap into a success result_t
      */
-    static auto success(T value) noexcept -> result_t<T, E>
+    static auto success(T value = T{}) noexcept -> result_t<T, E>
     {
         return result_t<T, E>{true, std::variant<T, E>{std::move(value)}};
     }
@@ -150,7 +150,7 @@ class result_t
      *
      * @param error The error value to wrap.
      */
-    static auto error(E error) noexcept -> result_t<T, E>
+    static auto error(E error = E{}) noexcept -> result_t<T, E>
     {
         return result_t<T, E>{false, std::variant<T, E>{std::move(error)}};
     }
